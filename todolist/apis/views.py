@@ -1,3 +1,4 @@
+# CRUD Operations
 from django.shortcuts import render
 from .models import Post
 from rest_framework.decorators import api_view
@@ -15,6 +16,7 @@ def ApiOverView(request):
   }
   return Response(api_urls)
 
+#Create
 @api_view(['POST'])
 def CreatePost(request):
   post = PostSerializer(data = request.data)
@@ -28,3 +30,19 @@ def CreatePost(request):
     return Response(request.data)
   else:
     return Response(status = status.HTTP_404_NOT_FOUND)
+
+#Read
+@api_view(['GET'])
+def ViewPost(request):
+  
+  if request.query_params:
+    post = Post.objects.filter(**request.query_params.dict())
+  else:
+    post = Post.objects.all()  
+    
+  if post :
+    serializer = PostSerializer(post , many=True)
+    return Response(serializer.data)
+  else :
+    return Response(status=status.HTTP_404_NOT_FOUND)
+  
