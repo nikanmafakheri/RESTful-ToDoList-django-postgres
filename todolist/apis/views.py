@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import Post
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
+from .serializers import PostSerializer
+from rest_framework import serializers , status
 
 @api_view(['GET'])
 def ApiOverView(request):
@@ -13,3 +14,17 @@ def ApiOverView(request):
     'update':'/update/pk',
   }
   return Response(api_urls)
+
+@api_view(['POST'])
+def CreatePost(request):
+  post = PostSerializer(data = request.data)
+  
+  title = request.data.get('title')
+  
+  if Post.objects.filter(title = title).exists():
+    raise serializers.ValidationError('this title already exists')
+  if post.is_valid():
+    post.save()
+    return Response(request.data)
+  else:
+    return Response(status = status.HTTP_404_NOT_FOUND)
