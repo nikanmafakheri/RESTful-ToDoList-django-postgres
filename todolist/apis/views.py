@@ -1,5 +1,5 @@
 # CRUD Operations
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from .models import Post
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -61,3 +61,11 @@ def UpdatePost(request, pk):
     return Response(serializer.data)
   
   return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#Delete
+@api_view(['DELETE'])
+def DeletePost(request, pk):
+  post = get_object_or_404(Post , pk=pk)
+  post.delete()
+  return Response(status=status.HTTP_204_NO_CONTENT)
+
