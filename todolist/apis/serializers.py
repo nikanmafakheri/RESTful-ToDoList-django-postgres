@@ -1,8 +1,8 @@
 from django.db.models import fields
 from rest_framework import serializers
-from .models import Post
+from .models import Task
 
-class PostSerializer(serializers.ModelSerializer):
+class TaskSerializer(serializers.ModelSerializer):
   class Meta :
-    model = Post
+    model = Task
     fields = ('title','description','created_at',)

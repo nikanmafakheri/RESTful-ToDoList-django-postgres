@@ -3,8 +3,8 @@ from . import views
 
 urlpatterns = [
   path('',views.ApiOverView,name='home'),
-  path('create/',views.CreatePost,name='create'),
-  path('all/',views.ViewPost,name='view'),
-  path('update/<int:pk>/',views.UpdatePost,name='update'),
-  path('delete/<int:pk>/',views.DeletePost,name='delete'),
+  path('task/',views.CreateTask,name='create'),
+  path('tasks/',views.ViewTask,name='view'),
+  path('task/<int:pk>/',views.TaskOperation,name='operation'),
+  # path('task/<int:pk>/',views.TaskOperation,name='delete'),
 ]
