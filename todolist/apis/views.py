@@ -46,29 +46,6 @@ def ViewTask(request):
   else :
     return Response(status=status.HTTP_404_NOT_FOUND)
   
-# #Update  
-# @api_view(['PUT'])
-# def UpdateTask(request, pk):
-#   try:
-#     task = Task.objects.get(pk=pk)
-#   except task.DoesNotExist:
-#     return Response(status=status.HTTP_404_NOT_FOUND)
-  
-#   serializer = TaskSerializer(instance=task, data=request.data)
-
-#   if serializer.is_valid():
-#     serializer.save()
-#     return Response(serializer.data)
-  
-#   return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-# #Delete
-# @api_view(['DELETE'])
-# def DeleteTask(request, pk):
-#   task = get_object_or_404(Task , pk=pk)
-#   task.delete()
-#   return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 @api_view(['PUT','DELETE'])
 def TaskOperation(request, pk):
@@ -90,4 +67,4 @@ def TaskOperation(request, pk):
     task.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
   else :
-    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)    
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)      
