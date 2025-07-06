@@ -8,6 +8,7 @@ from rest_framework import serializers , status
 from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def ApiOverView(request):
   api_urls = {
     'all_tasks':'/tasks',
@@ -19,6 +20,7 @@ def ApiOverView(request):
 
 #Create
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def CreateTask(request):
   task = TaskSerializer(data = request.data)
   
@@ -34,6 +36,7 @@ def CreateTask(request):
 
 #Read
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def ViewTask(request):
   #checking for the params in URL
   if request.query_params:
@@ -49,6 +52,7 @@ def ViewTask(request):
   
 
 @api_view(['PUT','DELETE'])
+@permission_classes([IsAuthenticated])
 def TaskOperation(request, pk):
   #UPDATE
   if request.method == 'PUT':
