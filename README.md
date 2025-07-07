@@ -125,8 +125,3 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 This project is open source and available under the [MIT License](LICENSE).
 
 ```
-
----
-
-Would you like me to create the actual file (`README.md`) and help you upload it to the repo with a commit message too?
-```
